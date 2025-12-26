@@ -5,3 +5,6 @@ dist/
 .env.local
 *.log
 .DS_Store
+# Test files with secrets (keep local, don't commit)
+# test_model_existence.py
+# test_models.py

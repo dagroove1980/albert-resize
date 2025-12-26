@@ -1,7 +1,6 @@
 import { verifyWebhookSignature } from '../../lib/paddle.js';
-import { getUser, updateUser } from '../../lib/kv.js';
+import { getUser, updateUser, setSubscriptionUserMapping, findUserBySubscriptionId, getSubscription } from '../../lib/db.js';
 import { updateSubscription, grantSubscriptionCredits, getPlan } from '../../lib/subscriptions.js';
-import { kv } from '@vercel/kv';
 
 /**
  * Map Paddle price IDs to plan IDs
@@ -126,8 +125,8 @@ async function handleSubscriptionCreated(event) {
     plan: planId
   });
 
-  // Store subscription -> user mapping
-  await kv.set(`subscription_user:${subscription.id}`, userId);
+  // Store subscription -> user mapping (handled by subscriptions table)
+  await setSubscriptionUserMapping(subscription.id, userId);
 
   // Grant initial credits
   await grantSubscriptionCredits(userId, planId);
@@ -223,7 +222,7 @@ async function handleTransactionCompleted(event) {
   }
 
   // Get subscription to determine plan
-  const subscription = await kv.get(`subscription:${subscriptionId}`);
+  const subscription = await getSubscription(subscriptionId);
   if (subscription && subscription.plan) {
     // Grant monthly credits
     await grantSubscriptionCredits(user.userId, subscription.plan);
@@ -254,23 +253,5 @@ async function handlePaymentFailed(event) {
   }
 }
 
-/**
- * Helper to find user by subscription ID
- */
-async function findUserBySubscriptionId(subscriptionId) {
-  // Check subscription -> user mapping
-  const userId = await kv.get(`subscription_user:${subscriptionId}`);
-  
-  if (userId) {
-    return await getUser(userId);
-  }
-  
-  // Try to get from subscription data
-  const subscription = await kv.get(`subscription:${subscriptionId}`);
-  if (subscription && subscription.userId) {
-    return await getUser(subscription.userId);
-  }
-  
-  return null;
-}
+// findUserBySubscriptionId is now imported from db.js
 

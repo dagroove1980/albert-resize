@@ -23,22 +23,27 @@ export default async function handler(req, res) {
   // 1. Authenticate user
   const user = await getUserFromRequest(req);
   if (!user) {
-    return res.status(401).json({ 
-      success: false, 
+    return res.status(401).json({
+      success: false,
       error: 'Authentication required. Please log in to use this service.',
       code: 'AUTH_REQUIRED'
     });
   }
 
   // 2. Check if user has sufficient credits
-  const hasEnoughCredits = await hasCredits(user.userId, 1);
-  if (!hasEnoughCredits) {
-    return res.status(402).json({ 
-      success: false, 
-      error: 'Insufficient credits. Please subscribe to continue.',
-      code: 'INSUFFICIENT_CREDITS',
-      credits: user.credits || 0
-    });
+  // Only check if payments are enabled
+  const paymentsEnabled = process.env.ENABLE_PAYMENTS === 'true';
+
+  if (paymentsEnabled) {
+    const hasEnoughCredits = await hasCredits(user.userId, 1);
+    if (!hasEnoughCredits) {
+      return res.status(402).json({
+        success: false,
+        error: 'Insufficient credits. Please subscribe to continue.',
+        code: 'INSUFFICIENT_CREDITS',
+        credits: user.credits || 0
+      });
+    }
   }
 
   const { imageData, mimeType, targetSizeKey } = req.body;
@@ -49,15 +54,18 @@ export default async function handler(req, res) {
   }
 
   // 3. Deduct credit before processing (optimistic deduction)
-  let remainingCredits;
-  try {
-    remainingCredits = await deductCredits(user.userId, 1, 'image_processing');
-  } catch (error) {
-    return res.status(402).json({ 
-      success: false, 
-      error: 'Failed to deduct credits. Please try again.',
-      code: 'CREDIT_DEDUCTION_FAILED'
-    });
+  let remainingCredits = user.credits || 0;
+
+  if (paymentsEnabled) {
+    try {
+      remainingCredits = await deductCredits(user.userId, 1, 'image_processing');
+    } catch (error) {
+      return res.status(402).json({
+        success: false,
+        error: 'Failed to deduct credits. Please try again.',
+        code: 'CREDIT_DEDUCTION_FAILED'
+      });
+    }
   }
 
   const apiToken = process.env.REPLICATE_API_TOKEN;
@@ -77,12 +85,12 @@ export default async function handler(req, res) {
     // but Code.gs was fetching version first)
     const versionUrl = `${CONFIG.REPLICATE_API_BASE}/models/${modelConfig.model}`;
     const versionResponse = await fetch(versionUrl, { headers });
-    
+
     if (!versionResponse.ok) {
       const errorText = await versionResponse.text();
       throw new Error(`Failed to fetch model version: ${errorText}`);
     }
-    
+
     const versionData = await versionResponse.json();
     const versionId = versionData.latest_version.id;
 
@@ -124,32 +132,32 @@ export default async function handler(req, res) {
 
     while (status !== 'succeeded' && status !== 'failed' && status !== 'canceled' && attempts < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, 3000));
-      
+
       const statusUrl = `${CONFIG.REPLICATE_API_BASE}/predictions/${predictionId}`;
       const statusResponse = await fetch(statusUrl, { headers });
-      
+
       if (!statusResponse.ok) {
         attempts++;
         continue;
       }
-      
+
       const statusResult = await statusResponse.json();
       status = statusResult.status;
-      
+
       if (status === 'succeeded') {
         const output = statusResult.output;
         const outputUrl = Array.isArray(output) ? output[0] : output;
-        
+
         if (!outputUrl) {
           throw new Error('Prediction succeeded but no output URL found.');
         }
-        
+
         // 5. Download and convert to base64
         const imgResponse = await fetch(outputUrl);
         const buffer = await imgResponse.arrayBuffer();
         const contentType = imgResponse.headers.get('content-type');
         const base64 = Buffer.from(buffer).toString('base64');
-        
+
         resultData = {
           success: true,
           modelName: modelConfig.name,
@@ -163,7 +171,7 @@ export default async function handler(req, res) {
       } else if (status === 'failed' || status === 'canceled') {
         throw new Error(`Prediction failed: ${statusResult.error || 'Unknown error'}`);
       }
-      
+
       attempts++;
     }
 
@@ -175,11 +183,11 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error(`Error processing image: ${error.message}`);
-    
+
     // If processing failed after credit deduction, we could refund the credit
     // For now, we'll just log it. In production, you might want to implement refund logic.
     console.error(`Credit was deducted but processing failed for user ${user.userId}`);
-    
+
     res.status(500).json({
       success: false,
       error: error.message,

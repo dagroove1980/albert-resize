@@ -8,3 +8,4 @@ dist/
 # Test files with secrets (keep local, don't commit)
 # test_model_existence.py
 # test_models.py
+.env*.local

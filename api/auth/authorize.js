@@ -5,36 +5,34 @@ export default async function handler(req, res) {
 
   const { provider } = req.query;
 
-  if (!provider || (provider !== 'google' && provider !== 'github')) {
-    return res.status(400).json({ error: 'Invalid provider' });
+  if (!provider || provider !== 'google') {
+    return res.status(400).json({ error: 'Invalid provider. Only Google OAuth is supported.' });
   }
 
-  const baseUrl = process.env.VERCEL_URL 
-    ? `https://${process.env.VERCEL_URL}` 
-    : 'http://localhost:3000';
+  // Use production URL or fallback to VERCEL_URL or localhost
+  const baseUrl = process.env.VERCEL_ENV === 'production' 
+    ? 'https://albert-resize.vercel.app'
+    : process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}` 
+      : 'http://localhost:5173';
   
   const redirectUri = `${baseUrl}/api/auth/login?provider=${provider}`;
-
-  let authUrl;
-
-  if (provider === 'google') {
-    const params = new URLSearchParams({
-      client_id: process.env.GOOGLE_CLIENT_ID,
-      redirect_uri: redirectUri,
-      response_type: 'code',
-      scope: 'openid email profile',
-      access_type: 'offline',
-      prompt: 'consent'
-    });
-    authUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
-  } else if (provider === 'github') {
-    const params = new URLSearchParams({
-      client_id: process.env.GITHUB_CLIENT_ID,
-      redirect_uri: redirectUri,
-      scope: 'read:user user:email'
-    });
-    authUrl = `https://github.com/login/oauth/authorize?${params.toString()}`;
+  
+  // Validate required env vars
+  if (!process.env.GOOGLE_CLIENT_ID) {
+    console.error('GOOGLE_CLIENT_ID is not set');
+    return res.status(500).json({ error: 'OAuth configuration error' });
   }
+
+  const params = new URLSearchParams({
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    redirect_uri: redirectUri,
+    response_type: 'code',
+    scope: 'openid email profile',
+    access_type: 'offline',
+    prompt: 'consent'
+  });
+  const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?${params.toString()}`;
 
   res.redirect(authUrl);
 }

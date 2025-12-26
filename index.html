@@ -524,18 +524,18 @@
             });
         });
 
-        // Check auth status and redirect to app if logged in
+        // Check auth status and update UI
         async function checkAuth() {
             try {
                 const response = await fetch('/api/auth/session');
                 const data = await response.json();
 
                 if (data.authenticated) {
-                    document.getElementById('auth-loading').classList.remove('hidden');
-                    window.location.href = '/app';
-                } else {
-                    // Show login button in a navbar if we had one (we can add one later)
-                    // For now, "Try For Free" works as login
+                    // User is logged in: Update buttons to "Go to App"
+                    document.querySelectorAll('a[href*="/api/auth/authorize"]').forEach(btn => {
+                        btn.href = '/app';
+                        btn.textContent = 'Go to App →';
+                    });
                 }
             } catch (error) {
                 console.log('Auth check skipped');
@@ -547,3 +547,4 @@
 </body>
 
 </html>
+```

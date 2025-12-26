@@ -1,0 +1,38 @@
+[
+  {
+    "success": true,
+    "model_name": "Bria Expand",
+    "model_id": "bria/expand-image",
+    "output_url": "https://replicate.delivery/xezq/Ipl5viTCfSSwVCuFBI6tdoYE8lf6iPj1E7KfMt7DUSqbVQsrA/tmpncv59o3t.png",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "success": true,
+    "model_name": "Google Nano-Banana",
+    "model_id": "google/nano-banana",
+    "output_url": "https://replicate.delivery/xezq/LKrIWvxAriKhJ9TWQhr8yasQ6AnbuvT2aD783cFUViKwCidF/tmpzw1bbky8.jpeg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "success": true,
+    "model_name": "Google Gemini Flash",
+    "model_id": "google/gemini-2.5-flash-image",
+    "output_url": "https://replicate.delivery/xezq/JXiAALVkSn60IZAgvLLAYQOTZLP9s7y1H9zdOYHGu8A1CidF/tmpqpzi91tn.jpeg",
+    "width": 1080,
+    "height": 1920
+  },
+  {
+    "success": false,
+    "model_name": "Qwen Image Edit",
+    "model_id": "qwen/qwen-image-edit-plus",
+    "error": "Failed to create prediction: {\"detail\":\"- input.image: Invalid type. Expected: array, given: string\\n\",\"status\":422,\"title\":\"Input validation failed\",\"invalid_fields\":[{\"type\":\"invalid_type\",\"field\":\"input.image\",\"description\":\"Invalid type. Expected: array, given: string\"}]}\n"
+  },
+  {
+    "success": false,
+    "model_name": "FLUX Kontext Pro",
+    "model_id": "black-forest-lab/flux-kontext-pro",
+    "error": "Failed to fetch model version: {\"detail\":\"Model not found.\"}"
+  }
+]

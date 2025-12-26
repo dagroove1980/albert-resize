@@ -1,0 +1,22 @@
+{
+  "name": "albert-resize",
+  "version": "1.0.0",
+  "description": "AI-Powered Image Extension",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "@vercel/kv": "^1.0.0",
+    "@auth/core": "^0.24.0",
+    "jose": "^5.2.0",
+    "cookie": "^0.6.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  },
+  "type": "module"
+}

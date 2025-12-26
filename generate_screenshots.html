@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Screenshots</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .screenshot-area {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="max-w-6xl mx-auto">
+        <h1 class="text-4xl font-bold text-white text-center mb-8">Screenshot Generator</h1>
+        
+        <!-- App Screenshot -->
+        <div class="glass-panel rounded-3xl p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-4">App Interface</h2>
+            <div id="app-screenshot" class="screenshot-area rounded-xl">
+                <!-- This will be filled by the actual app -->
+                <iframe src="YOUR_APP_URL" width="100%" height="800" style="border: none;"></iframe>
+            </div>
+        </div>
+
+        <!-- Before/After Examples -->
+        <div class="glass-panel rounded-3xl p-8">
+            <h2 class="text-2xl font-bold mb-4">Before/After Examples</h2>
+            
+            <!-- Example 1: Square to Vertical Family -->
+            <div class="mb-8">
+                <h3 class="text-xl font-semibold mb-4">Square to Vertical - Family Photo</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="screenshot-area rounded-xl">
+                        <p class="text-sm font-bold mb-2">BEFORE (1024×1024)</p>
+                        <canvas id="family-before" width="1024" height="1024" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px;"></canvas>
+                    </div>
+                    <div class="screenshot-area rounded-xl">
+                        <p class="text-sm font-bold mb-2">AFTER (1080×1920)</p>
+                        <canvas id="family-after" width="1080" height="1920" style="max-width: 100%; height: auto; border: 2px solid #22c55e; border-radius: 8px;"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Example 2: Vertical to Landscape Bird -->
+            <div>
+                <h3 class="text-xl font-semibold mb-4">Vertical to Landscape - Bird Photo</h3>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="screenshot-area rounded-xl">
+                        <p class="text-sm font-bold mb-2">BEFORE (1080×1920)</p>
+                        <canvas id="bird-before" width="1080" height="1920" style="max-width: 100%; height: auto; border: 2px solid #ddd; border-radius: 8px;"></canvas>
+                    </div>
+                    <div class="screenshot-area rounded-xl">
+                        <p class="text-sm font-bold mb-2">AFTER (1792×1024)</p>
+                        <canvas id="bird-after" width="1792" height="1024" style="max-width: 100%; height: auto; border: 2px solid #22c55e; border-radius: 8px;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate realistic family photo (square)
+        function generateFamilyPhoto(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Warm background gradient
+            const gradient = ctx.createLinearGradient(0, 0, width, height);
+            gradient.addColorStop(0, '#fef3c7');
+            gradient.addColorStop(0.3, '#fde68a');
+            gradient.addColorStop(0.6, '#fcd34d');
+            gradient.addColorStop(1, '#f59e0b');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Add some texture/noise
+            for (let i = 0; i < 50; i++) {
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.3})`;
+                ctx.beginPath();
+                ctx.arc(Math.random() * width, Math.random() * height, Math.random() * 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Draw family silhouette in center
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            // Person 1 (left)
+            ctx.fillStyle = '#92400e';
+            ctx.beginPath();
+            ctx.arc(centerX - 80, centerY - 40, 25, 0, Math.PI * 2); // Head
+            ctx.fill();
+            ctx.fillRect(centerX - 95, centerY - 15, 30, 60); // Body
+            
+            // Person 2 (center, taller)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - 60, 30, 0, Math.PI * 2); // Head
+            ctx.fill();
+            ctx.fillRect(centerX - 20, centerY - 30, 40, 80); // Body
+            
+            // Person 3 (right)
+            ctx.beginPath();
+            ctx.arc(centerX + 80, centerY - 40, 25, 0, Math.PI * 2); // Head
+            ctx.fill();
+            ctx.fillRect(centerX + 65, centerY - 15, 30, 60); // Body
+
+            // Add some decorative elements
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+            for (let i = 0; i < 10; i++) {
+                ctx.beginPath();
+                ctx.arc(Math.random() * width, Math.random() * height, 5, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Generate extended family photo (vertical)
+        function generateExtendedFamilyPhoto(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Extended warm background
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#fef3c7');
+            gradient.addColorStop(0.2, '#fde68a');
+            gradient.addColorStop(0.4, '#fcd34d');
+            gradient.addColorStop(0.6, '#fbbf24');
+            gradient.addColorStop(0.8, '#f59e0b');
+            gradient.addColorStop(1, '#d97706');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Add texture
+            for (let i = 0; i < 100; i++) {
+                ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.2})`;
+                ctx.beginPath();
+                ctx.arc(Math.random() * width, Math.random() * height, Math.random() * 40, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Original content preserved in center (middle third vertically)
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            // Person 1 (left)
+            ctx.fillStyle = '#92400e';
+            ctx.beginPath();
+            ctx.arc(centerX - 80, centerY - 40, 25, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(centerX - 95, centerY - 15, 30, 60);
+            
+            // Person 2 (center)
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - 60, 30, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(centerX - 20, centerY - 30, 40, 80);
+            
+            // Person 3 (right)
+            ctx.beginPath();
+            ctx.arc(centerX + 80, centerY - 40, 25, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.fillRect(centerX + 65, centerY - 15, 30, 60);
+
+            // Extended areas (top and bottom) - more subtle
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
+            for (let i = 0; i < 30; i++) {
+                ctx.beginPath();
+                ctx.arc(Math.random() * width, Math.random() * height * 0.25, Math.random() * 30, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(Math.random() * width, height - Math.random() * height * 0.25, Math.random() * 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Generate bird photo (vertical)
+        function generateBirdPhoto(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Sky blue gradient
+            const gradient = ctx.createLinearGradient(0, 0, 0, height);
+            gradient.addColorStop(0, '#e0f2fe');
+            gradient.addColorStop(0.3, '#bae6fd');
+            gradient.addColorStop(0.6, '#7dd3fc');
+            gradient.addColorStop(1, '#0ea5e9');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Clouds
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            for (let i = 0; i < 5; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height * 0.6;
+                ctx.beginPath();
+                ctx.arc(x, y, 30, 0, Math.PI * 2);
+                ctx.arc(x + 25, y, 35, 0, Math.PI * 2);
+                ctx.arc(x + 50, y, 30, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Bird in center
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            // Bird body
+            ctx.fillStyle = '#1e40af';
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY, 40, 25, -0.3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Bird head
+            ctx.beginPath();
+            ctx.arc(centerX - 20, centerY - 15, 18, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Wing
+            ctx.fillStyle = '#1e3a8a';
+            ctx.beginPath();
+            ctx.ellipse(centerX + 10, centerY - 5, 35, 20, 0.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Beak
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.moveTo(centerX - 35, centerY - 10);
+            ctx.lineTo(centerX - 50, centerY - 5);
+            ctx.lineTo(centerX - 35, centerY);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        // Generate extended bird photo (landscape)
+        function generateExtendedBirdPhoto(canvas) {
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width;
+            const height = canvas.height;
+
+            // Extended sky gradient (horizontal)
+            const gradient = ctx.createLinearGradient(0, 0, width, 0);
+            gradient.addColorStop(0, '#e0f2fe');
+            gradient.addColorStop(0.2, '#bae6fd');
+            gradient.addColorStop(0.4, '#7dd3fc');
+            gradient.addColorStop(0.6, '#38bdf8');
+            gradient.addColorStop(0.8, '#0ea5e9');
+            gradient.addColorStop(1, '#0284c7');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, width, height);
+
+            // Clouds across the sky
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+            for (let i = 0; i < 8; i++) {
+                const x = Math.random() * width;
+                const y = Math.random() * height * 0.7;
+                ctx.beginPath();
+                ctx.arc(x, y, 35, 0, Math.PI * 2);
+                ctx.arc(x + 30, y, 40, 0, Math.PI * 2);
+                ctx.arc(x + 60, y, 35, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Original bird preserved in center
+            const centerX = width / 2;
+            const centerY = height / 2;
+            
+            // Bird body
+            ctx.fillStyle = '#1e40af';
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY, 40, 25, -0.3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Bird head
+            ctx.beginPath();
+            ctx.arc(centerX - 20, centerY - 15, 18, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Wing
+            ctx.fillStyle = '#1e3a8a';
+            ctx.beginPath();
+            ctx.ellipse(centerX + 10, centerY - 5, 35, 20, 0.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Beak
+            ctx.fillStyle = '#f59e0b';
+            ctx.beginPath();
+            ctx.moveTo(centerX - 35, centerY - 10);
+            ctx.lineTo(centerX - 50, centerY - 5);
+            ctx.lineTo(centerX - 35, centerY);
+            ctx.closePath();
+            ctx.fill();
+
+            // Extended sky areas (left and right) - more clouds
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+            for (let i = 0; i < 10; i++) {
+                const x = Math.random() * width * 0.3; // Left side
+                const y = Math.random() * height;
+                ctx.beginPath();
+                ctx.arc(x, y, 25, 0, Math.PI * 2);
+                ctx.fill();
+                
+                const x2 = width - Math.random() * width * 0.3; // Right side
+                const y2 = Math.random() * height;
+                ctx.beginPath();
+                ctx.arc(x2, y2, 25, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Generate all images
+        window.addEventListener('load', () => {
+            generateFamilyPhoto(document.getElementById('family-before'));
+            generateExtendedFamilyPhoto(document.getElementById('family-after'));
+            generateBirdPhoto(document.getElementById('bird-before'));
+            generateExtendedBirdPhoto(document.getElementById('bird-after'));
+        });
+
+        // Function to download canvas as image
+        function downloadCanvas(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+
+    <div class="text-center mt-8 mb-8">
+        <button onclick="downloadCanvas('family-before', 'family-before.png')" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Download Family Before</button>
+        <button onclick="downloadCanvas('family-after', 'family-after.png')" class="bg-green-500 text-white px-4 py-2 rounded mr-2">Download Family After</button>
+        <button onclick="downloadCanvas('bird-before', 'bird-before.png')" class="bg-blue-500 text-white px-4 py-2 rounded mr-2">Download Bird Before</button>
+        <button onclick="downloadCanvas('bird-after', 'bird-after.png')" class="bg-green-500 text-white px-4 py-2 rounded">Download Bird After</button>
+    </div>
+</body>
+</html>
+

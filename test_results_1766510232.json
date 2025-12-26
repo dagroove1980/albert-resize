@@ -1,0 +1,34 @@
+[
+  {
+    "success": true,
+    "model_name": "Bria Expand",
+    "model_id": "bria/expand-image",
+    "output_url": "https://replicate.delivery/xezq/1ufRyZ5lXMWtBaBec5ltDdL5DkPoEQitziH54n9dsI0NCI2VA/tmpx_z4dv0r.png",
+    "width": 1792,
+    "height": 1024
+  },
+  {
+    "success": false,
+    "model_name": "Google Nano-Banana",
+    "model_id": "google/nano-banana",
+    "error": "Failed to create prediction: {\"detail\":\"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~1s.\",\"status\":429,\"retry_after\":1}\n"
+  },
+  {
+    "success": false,
+    "model_name": "Google Gemini Flash",
+    "model_id": "google/gemini-2.5-flash-image",
+    "error": "Failed to create prediction: {\"detail\":\"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~8s.\",\"status\":429,\"retry_after\":8}\n"
+  },
+  {
+    "success": false,
+    "model_name": "Qwen Image Edit",
+    "model_id": "qwen/qwen-image-edit-plus",
+    "error": "Failed to create prediction: {\"detail\":\"Request was throttled. Your rate limit for creating predictions is reduced to 6 requests per minute with a burst of 1 requests while you have less than $5.0 in credit. Your rate limit resets in ~6s.\",\"status\":429,\"retry_after\":6}\n"
+  },
+  {
+    "success": false,
+    "model_name": "FLUX Kontext Pro",
+    "model_id": "black-forest-lab/flux-kontext-pro",
+    "error": "Failed to fetch model version: {\"detail\":\"Model not found.\"}"
+  }
+]

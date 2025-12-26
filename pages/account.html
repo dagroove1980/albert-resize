@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - AlbertResize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <div class="min-h-screen p-4 py-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl p-8 mb-6">
+                <div class="flex items-center justify-between mb-6">
+                    <h1 class="text-3xl font-bold">Account Dashboard</h1>
+                    <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
+                </div>
+
+                <!-- User Info -->
+                <div id="user-info" class="mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Account Information</h2>
+                    <div class="space-y-2">
+                        <p><strong>Email:</strong> <span id="user-email">Loading...</span></p>
+                        <p><strong>Name:</strong> <span id="user-name">Loading...</span></p>
+                        <p><strong>Provider:</strong> <span id="user-provider">Loading...</span></p>
+                    </div>
+                </div>
+
+                <!-- Credits -->
+                <div class="mb-6 p-6 bg-blue-50 rounded-xl">
+                    <h2 class="text-xl font-semibold mb-2">Credits</h2>
+                    <div class="text-4xl font-bold text-blue-600 mb-2" id="credits-display">0</div>
+                    <p class="text-gray-600">Each credit = 1 image processing</p>
+                </div>
+
+                <!-- Subscription Status -->
+                <div id="subscription-section" class="mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Subscription</h2>
+                    <div id="subscription-status" class="p-4 bg-gray-50 rounded-lg">
+                        <p id="subscription-text">Loading...</p>
+                    </div>
+                    <div class="mt-4">
+                        <a href="/pages/pricing.html" class="inline-block px-6 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-medium rounded-full transition">
+                            Manage Subscription
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Credit History -->
+                <div class="mb-6">
+                    <h2 class="text-xl font-semibold mb-4">Recent Activity</h2>
+                    <div id="credit-history" class="space-y-2">
+                        <p class="text-gray-500">Loading...</p>
+                    </div>
+                </div>
+
+                <!-- Logout -->
+                <div class="pt-6 border-t">
+                    <button id="logout-btn" class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-full transition">
+                        Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function loadAccountData() {
+            try {
+                // Get session
+                const sessionResponse = await fetch('/api/auth/session');
+                const sessionData = await sessionResponse.json();
+
+                if (!sessionData.authenticated) {
+                    window.location.href = '/';
+                    return;
+                }
+
+                // Update user info
+                document.getElementById('user-email').textContent = sessionData.user.email || 'N/A';
+                document.getElementById('user-name').textContent = sessionData.user.name || 'N/A';
+                document.getElementById('user-provider').textContent = sessionData.user.provider || 'N/A';
+                document.getElementById('credits-display').textContent = sessionData.user.credits || 0;
+
+                // Update subscription status
+                const subscriptionStatus = sessionData.user.subscriptionStatus || 'none';
+                const subscriptionText = document.getElementById('subscription-text');
+                if (subscriptionStatus === 'active') {
+                    subscriptionText.textContent = 'Active subscription';
+                    subscriptionText.className = 'text-green-700 font-semibold';
+                } else if (subscriptionStatus === 'cancelled') {
+                    subscriptionText.textContent = 'Subscription cancelled';
+                    subscriptionText.className = 'text-yellow-700 font-semibold';
+                } else {
+                    subscriptionText.textContent = 'No active subscription';
+                    subscriptionText.className = 'text-gray-700';
+                }
+
+                // Load credit history
+                const historyResponse = await fetch('/api/credits/history?limit=10');
+                const historyData = await historyResponse.json();
+
+                const historyContainer = document.getElementById('credit-history');
+                if (historyData.history && historyData.history.length > 0) {
+                    historyContainer.innerHTML = historyData.history.map(transaction => {
+                        const date = new Date(transaction.timestamp);
+                        const type = transaction.type === 'addition' ? '+' : '-';
+                        const color = transaction.type === 'addition' ? 'text-green-600' : 'text-red-600';
+                        return `
+                            <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                <div>
+                                    <p class="font-medium">${transaction.reason || 'Transaction'}</p>
+                                    <p class="text-sm text-gray-500">${date.toLocaleString()}</p>
+                                </div>
+                                <div class="text-right">
+                                    <p class="${color} font-bold">${type}${transaction.amount}</p>
+                                    <p class="text-sm text-gray-500">Balance: ${transaction.balance}</p>
+                                </div>
+                            </div>
+                        `;
+                    }).join('');
+                } else {
+                    historyContainer.innerHTML = '<p class="text-gray-500">No activity yet</p>';
+                }
+            } catch (error) {
+                console.error('Failed to load account data:', error);
+            }
+        }
+
+        // Logout handler
+        document.getElementById('logout-btn').addEventListener('click', async () => {
+            try {
+                await fetch('/api/auth/logout', { method: 'POST' });
+                window.location.href = '/';
+            } catch (error) {
+                console.error('Logout failed:', error);
+            }
+        });
+
+        // Load data on page load
+        loadAccountData();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - AlbertResize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .top-bar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-content {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Top Bar -->
+    <nav class="top-bar fixed top-0 left-0 right-0 z-50">
+        <div class="top-bar-content mx-auto px-4 md:px-8 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <!-- Logo/Brand -->
+                <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white drop-shadow-lg">Albert<span class="text-purple-200">Resize</span></h1>
+                        <p class="text-xs text-white/80">AI-Powered Image Extension</p>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <div class="flex items-center space-x-4">
+                    <a href="/" class="px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white text-sm font-medium rounded-full transition-all border border-white/30">
+                        Home
+                    </a>
+                    <a href="/pages/account.html" id="account-link" class="hidden px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white text-sm font-medium rounded-full transition-all border border-white/30">
+                        Account
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen flex items-center justify-center p-4 pt-32 pb-20">
+        <div class="max-w-6xl w-full">
+            <div class="text-center mb-12">
+                <h1 class="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">Choose Your Plan</h1>
+                <p class="text-white/90 text-lg md:text-xl mb-2">Each credit = 1 image processing</p>
+                <p class="text-white/70 text-sm">Cancel anytime • No hidden fees</p>
+            </div>
+
+            <!-- Current Subscription Status (if logged in) -->
+            <div id="current-subscription" class="hidden mb-6 glass-panel rounded-2xl p-6 max-w-2xl mx-auto">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600 mb-1">Current Plan</p>
+                        <p class="text-xl font-bold" id="current-plan-name">-</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-600 mb-1">Credits Remaining</p>
+                        <p class="text-xl font-bold text-blue-600" id="current-credits">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Starter Plan -->
+                <div class="glass-panel rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-2">Starter</h3>
+                    <div class="mb-4">
+                        <span class="text-4xl font-bold">$9.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            25 credits/month
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            All image sizes
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            High-quality AI processing
+                        </li>
+                    </ul>
+                    <button onclick="subscribe('starter')" class="subscribe-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="subscribe-text">Subscribe</span>
+                        <span class="subscribe-loading hidden">Processing...</span>
+                    </button>
+                </div>
+
+                <!-- Pro Plan -->
+                <div class="glass-panel rounded-2xl p-8 border-2 border-purple-500 relative">
+                    <div class="absolute top-0 right-0 bg-purple-500 text-white px-4 py-1 rounded-bl-lg rounded-tr-2xl text-sm font-bold">
+                        Popular
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">Pro</h3>
+                    <div class="mb-4">
+                        <span class="text-4xl font-bold">$29.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            100 credits/month
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            All image sizes
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            High-quality AI processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority support
+                        </li>
+                    </ul>
+                    <button onclick="subscribe('pro')" class="subscribe-btn w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="subscribe-text">Subscribe</span>
+                        <span class="subscribe-loading hidden">Processing...</span>
+                    </button>
+                </div>
+
+                <!-- Business Plan -->
+                <div class="glass-panel rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold mb-2">Business</h3>
+                    <div class="mb-4">
+                        <span class="text-4xl font-bold">$99.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-6">
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            500 credits/month
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            All image sizes
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            High-quality AI processing
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Priority support
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Best value
+                        </li>
+                    </ul>
+                    <button onclick="subscribe('business')" class="subscribe-btn w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <span class="subscribe-text">Subscribe</span>
+                        <span class="subscribe-loading hidden">Processing...</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-16 glass-panel rounded-2xl p-8 max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">What is a credit?</h3>
+                        <p class="text-gray-600">Each credit equals one image processing. When you upload an image and extend it to a new size, one credit is used.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Do credits roll over?</h3>
+                        <p class="text-gray-600">Credits reset each month when your subscription renews. Unused credits from the previous month do not carry over.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">Can I cancel anytime?</h3>
+                        <p class="text-gray-600">Yes! You can cancel your subscription at any time. You'll continue to have access until the end of your billing period.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">What payment methods do you accept?</h3>
+                        <p class="text-gray-600">We accept all major credit cards and debit cards through our secure payment processor.</p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold mb-2">What image sizes can I extend to?</h3>
+                        <p class="text-gray-600">You can extend images to Square (1024×1024), Portrait (1080×1920 or 1024×1792), or Landscape (1792×1024) formats.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-8">
+                <a href="/" class="text-white hover:underline text-lg">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication status
+        async function checkAuth() {
+            try {
+                const response = await fetch('/api/auth/session');
+                const data = await response.json();
+                
+                if (data.authenticated && data.user) {
+                    // Show account link
+                    document.getElementById('account-link').classList.remove('hidden');
+                    
+                    // Show current subscription if exists
+                    if (data.user.subscriptionStatus === 'active') {
+                        document.getElementById('current-subscription').classList.remove('hidden');
+                        document.getElementById('current-plan-name').textContent = data.user.subscriptionId ? 'Active Subscription' : 'No Plan';
+                        document.getElementById('current-credits').textContent = data.user.credits || 0;
+                    }
+                }
+            } catch (error) {
+                console.error('Auth check failed:', error);
+            }
+        }
+
+        async function subscribe(planId) {
+            const button = event.target.closest('button');
+            const textSpan = button.querySelector('.subscribe-text');
+            const loadingSpan = button.querySelector('.subscribe-loading');
+            
+            // Show loading state
+            textSpan.classList.add('hidden');
+            loadingSpan.classList.remove('hidden');
+            button.disabled = true;
+
+            try {
+                const response = await fetch('/api/checkout/create', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ planId })
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        alert('Please log in to subscribe');
+                        window.location.href = '/';
+                        return;
+                    }
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error || 'Failed to create checkout');
+                }
+
+                const data = await response.json();
+                if (data.checkoutUrl) {
+                    window.location.href = data.checkoutUrl;
+                } else {
+                    throw new Error('No checkout URL received');
+                }
+            } catch (error) {
+                console.error('Subscribe error:', error);
+                alert(error.message || 'Failed to start checkout. Please try again.');
+                
+                // Reset button state
+                textSpan.classList.remove('hidden');
+                loadingSpan.classList.add('hidden');
+                button.disabled = false;
+            }
+        }
+
+        // Check auth on page load
+        checkAuth();
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refund Policy - AlbertResize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .top-bar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-content {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Top Bar -->
+    <nav class="top-bar fixed top-0 left-0 right-0 z-50">
+        <div class="top-bar-content mx-auto px-4 md:px-8 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white drop-shadow-lg">Albert<span class="text-purple-200">Resize</span></h1>
+                    </div>
+                </a>
+                <a href="/" class="px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white text-sm font-medium rounded-full transition-all border border-white/30">
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen p-4 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl p-8 md:p-12">
+                <h1 class="text-4xl font-bold mb-8">Refund Policy</h1>
+                <p class="text-gray-600 mb-8">Last updated: <span id="last-updated"></span></p>
+
+                <div class="prose max-w-none space-y-6">
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">1. Subscription Cancellation</h2>
+                        <p class="text-gray-700 mb-4">
+                            You may cancel your subscription at any time through your account dashboard. When you cancel:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Your subscription will remain active until the end of the current billing period</li>
+                            <li>You will continue to have access to the Service and your remaining credits</li>
+                            <li>No further charges will be made after the current period ends</li>
+                            <li>You will not receive a refund for the current billing period</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">2. Refund Eligibility</h2>
+                        <p class="text-gray-700 mb-4">
+                            We offer refunds in the following circumstances:
+                        </p>
+                        
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.1 Service Failure</h3>
+                        <p class="text-gray-700 mb-4">
+                            If the Service is unavailable or fails to function for an extended period (more than 48 hours) due to our fault, you may be eligible for a partial or full refund of the affected billing period.
+                        </p>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.2 Duplicate Charges</h3>
+                        <p class="text-gray-700 mb-4">
+                            If you are charged multiple times for the same subscription period, we will refund the duplicate charges immediately upon verification.
+                        </p>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.3 Billing Errors</h3>
+                        <p class="text-gray-700 mb-4">
+                            If you are charged incorrectly due to a billing error on our part, we will refund the incorrect amount.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">3. Non-Refundable Items</h2>
+                        <p class="text-gray-700 mb-4">The following are not eligible for refunds:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Used credits - Credits that have been consumed through image processing cannot be refunded</li>
+                            <li>Partial billing periods - No prorated refunds for partial months</li>
+                            <li>Change of mind - Refunds are not available simply because you no longer wish to use the Service</li>
+                            <li>Unsatisfactory results - We cannot guarantee specific AI processing results, and refunds are not available based on output quality</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">4. Refund Process</h2>
+                        <p class="text-gray-700 mb-4">
+                            To request a refund:
+                        </p>
+                        <ol class="list-decimal list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Contact us through your account dashboard or via the contact information on our website</li>
+                            <li>Provide your account email and subscription details</li>
+                            <li>Explain the reason for your refund request</li>
+                            <li>We will review your request within 5-7 business days</li>
+                            <li>If approved, refunds will be processed to your original payment method within 10-14 business days</li>
+                        </ol>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">5. Refund Timeline</h2>
+                        <p class="text-gray-700 mb-4">
+                            Refund processing times vary by payment method:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li><strong>Credit/Debit Cards:</strong> 5-10 business days after processing</li>
+                            <li><strong>PayPal:</strong> 3-5 business days after processing</li>
+                            <li><strong>Other Payment Methods:</strong> 10-14 business days after processing</li>
+                        </ul>
+                        <p class="text-gray-700 mb-4 mt-4">
+                            Note: The actual time it takes for the refund to appear in your account depends on your bank or payment provider.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">6. Chargebacks</h2>
+                        <p class="text-gray-700 mb-4">
+                            If you file a chargeback or dispute with your payment provider instead of contacting us first, we may suspend your account pending resolution. We encourage you to contact us directly to resolve any billing issues.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">7. Special Circumstances</h2>
+                        <p class="text-gray-700 mb-4">
+                            We understand that exceptional circumstances may arise. If you believe your situation warrants special consideration, please contact us with details, and we will review your case on an individual basis.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">8. Changes to Refund Policy</h2>
+                        <p class="text-gray-700 mb-4">
+                            We reserve the right to modify this Refund Policy at any time. Changes will be effective immediately upon posting. Your continued use of the Service after changes constitutes acceptance of the updated policy.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">9. Contact for Refunds</h2>
+                        <p class="text-gray-700 mb-4">
+                            For refund requests or questions about this policy, please contact us through your account dashboard or via the contact information provided on our website.
+                        </p>
+                    </section>
+                </div>
+
+                <div class="mt-12 pt-8 border-t">
+                    <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
+

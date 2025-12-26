@@ -1,0 +1,36 @@
+[
+  {
+    "success": true,
+    "model_name": "Bria Expand",
+    "model_id": "bria/expand-image",
+    "output_url": "https://replicate.delivery/xezq/trDLpHElKbZxPlBaxn4eAmiiepQxhPqBIaLGnba8Kpt89H2VA/tmpnw00auhx.png",
+    "width": 1792,
+    "height": 1024
+  },
+  {
+    "success": false,
+    "model_name": "FLUX Fill Pro",
+    "model_id": "black-forest-lab/flux-fill-pro",
+    "error": "Failed to fetch model version: {\"detail\":\"Model not found.\"}"
+  },
+  {
+    "success": true,
+    "model_name": "Google Nano-Banana",
+    "model_id": "google/nano-banana",
+    "output_url": "https://replicate.delivery/xezq/PztWzAMRVVoFHxiLiOwEjK9x2gY2Rm1P6vL5KqhYMSXifD7KA/tmppegv_3i9.jpeg",
+    "width": 1792,
+    "height": 1024
+  },
+  {
+    "success": false,
+    "model_name": "FLUX Fill Dev",
+    "model_id": "black-forest-lab/flux-fill-dev",
+    "error": "Failed to fetch model version: {\"detail\":\"Model not found.\"}"
+  },
+  {
+    "success": false,
+    "model_name": "Outpainter",
+    "model_id": "z_xkib/outpainter",
+    "error": "Failed to fetch model version: {\"detail\":\"Model not found.\"}"
+  }
+]

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - AlbertResize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .top-bar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-content {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Top Bar -->
+    <nav class="top-bar fixed top-0 left-0 right-0 z-50">
+        <div class="top-bar-content mx-auto px-4 md:px-8 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white drop-shadow-lg">Albert<span class="text-purple-200">Resize</span></h1>
+                    </div>
+                </a>
+                <a href="/" class="px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white text-sm font-medium rounded-full transition-all border border-white/30">
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen p-4 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl p-8 md:p-12">
+                <h1 class="text-4xl font-bold mb-8">Terms of Service</h1>
+                <p class="text-gray-600 mb-8">Last updated: <span id="last-updated"></span></p>
+
+                <div class="prose max-w-none space-y-6">
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">1. Acceptance of Terms</h2>
+                        <p class="text-gray-700 mb-4">
+                            By accessing and using AlbertResize ("Service"), you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to these Terms of Service, please do not use our Service.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">2. Description of Service</h2>
+                        <p class="text-gray-700 mb-4">
+                            AlbertResize is an AI-powered image extension service that allows users to extend images to various sizes (Square, Portrait, Landscape) using artificial intelligence technology. The Service processes images through third-party AI models and returns the processed results.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">3. User Accounts</h2>
+                        <p class="text-gray-700 mb-4">
+                            To use certain features of the Service, you must register for an account. You agree to:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Provide accurate, current, and complete information during registration</li>
+                            <li>Maintain and update your account information</li>
+                            <li>Maintain the security of your account credentials</li>
+                            <li>Accept responsibility for all activities under your account</li>
+                            <li>Notify us immediately of any unauthorized use</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">4. Subscription and Payment</h2>
+                        <p class="text-gray-700 mb-4">
+                            Our Service operates on a subscription basis with the following terms:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Subscriptions are billed monthly in advance</li>
+                            <li>Each subscription plan includes a specific number of credits per month</li>
+                            <li>Credits reset monthly and do not roll over</li>
+                            <li>You may cancel your subscription at any time</li>
+                            <li>Cancellation takes effect at the end of the current billing period</li>
+                            <li>Refunds are handled according to our Refund Policy</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">5. Credits and Usage</h2>
+                        <p class="text-gray-700 mb-4">
+                            Credits are consumed when you process an image through our Service:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>One credit equals one image processing operation</li>
+                            <li>Credits are deducted immediately upon successful processing</li>
+                            <li>Failed processing attempts may still consume credits</li>
+                            <li>Credits cannot be transferred between accounts</li>
+                            <li>Credits cannot be refunded individually</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">6. Acceptable Use</h2>
+                        <p class="text-gray-700 mb-4">You agree not to:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Use the Service for any illegal purpose or in violation of any laws</li>
+                            <li>Upload content that infringes on intellectual property rights</li>
+                            <li>Upload content that is harmful, offensive, or violates others' rights</li>
+                            <li>Attempt to reverse engineer or extract AI models</li>
+                            <li>Use automated systems to access the Service without permission</li>
+                            <li>Share or resell your account credentials</li>
+                            <li>Interfere with or disrupt the Service</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">7. Intellectual Property</h2>
+                        <p class="text-gray-700 mb-4">
+                            You retain ownership of images you upload. By using the Service, you grant us a license to process your images solely for the purpose of providing the Service. Processed images are returned to you, and you own the results.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            The Service itself, including all software, designs, and content, is owned by AlbertResize and protected by intellectual property laws.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">8. Service Availability</h2>
+                        <p class="text-gray-700 mb-4">
+                            We strive to maintain Service availability but do not guarantee uninterrupted access. The Service may be unavailable due to:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Scheduled maintenance</li>
+                            <li>Technical issues or failures</li>
+                            <li>Third-party service dependencies</li>
+                            <li>Force majeure events</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">9. Limitation of Liability</h2>
+                        <p class="text-gray-700 mb-4">
+                            TO THE MAXIMUM EXTENT PERMITTED BY LAW, ALBERTRESIZE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS OR REVENUES, WHETHER INCURRED DIRECTLY OR INDIRECTLY, OR ANY LOSS OF DATA, USE, GOODWILL, OR OTHER INTANGIBLE LOSSES.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">10. Termination</h2>
+                        <p class="text-gray-700 mb-4">
+                            We may terminate or suspend your account immediately, without prior notice, for conduct that we believe violates these Terms of Service or is harmful to other users, us, or third parties.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">11. Changes to Terms</h2>
+                        <p class="text-gray-700 mb-4">
+                            We reserve the right to modify these Terms of Service at any time. We will notify users of material changes via email or through the Service. Continued use of the Service after changes constitutes acceptance of the new terms.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">12. Contact Information</h2>
+                        <p class="text-gray-700 mb-4">
+                            If you have any questions about these Terms of Service, please contact us through our website or at the contact information provided in your account dashboard.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">13. Governing Law</h2>
+                        <p class="text-gray-700 mb-4">
+                            These Terms of Service shall be governed by and construed in accordance with the laws of the jurisdiction in which AlbertResize operates, without regard to its conflict of law provisions.
+                        </p>
+                    </section>
+                </div>
+
+                <div class="mt-12 pt-8 border-t">
+                    <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
+

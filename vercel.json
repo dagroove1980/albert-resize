@@ -1,0 +1,16 @@
+{
+    "rewrites": [
+        {
+            "source": "/landing",
+            "destination": "/landing.html"
+        },
+        {
+            "source": "/pages/:path*",
+            "destination": "/pages/:path*.html"
+        },
+        {
+            "source": "/",
+            "destination": "/index.html"
+        }
+    ]
+}

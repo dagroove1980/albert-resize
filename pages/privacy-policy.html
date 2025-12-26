@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - AlbertResize</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(-45deg, #E040FB, #00B0FF, #FF3B30, #FFCC00);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            min-height: 100vh;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+        }
+
+        .top-bar {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .top-bar-content {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Top Bar -->
+    <nav class="top-bar fixed top-0 left-0 right-0 z-50">
+        <div class="top-bar-content mx-auto px-4 md:px-8 py-4">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <a href="/" class="flex items-center space-x-3 hover:opacity-80 transition-opacity">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-white drop-shadow-lg">Albert<span class="text-purple-200">Resize</span></h1>
+                    </div>
+                </a>
+                <a href="/" class="px-4 py-2 bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white text-sm font-medium rounded-full transition-all border border-white/30">
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen p-4 pt-32 pb-20">
+        <div class="max-w-4xl mx-auto">
+            <div class="glass-panel rounded-2xl p-8 md:p-12">
+                <h1 class="text-4xl font-bold mb-8">Privacy Policy</h1>
+                <p class="text-gray-600 mb-8">Last updated: <span id="last-updated"></span></p>
+
+                <div class="prose max-w-none space-y-6">
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">1. Introduction</h2>
+                        <p class="text-gray-700 mb-4">
+                            AlbertResize ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our Service.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">2. Information We Collect</h2>
+                        
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.1 Account Information</h3>
+                        <p class="text-gray-700 mb-4">When you create an account, we collect:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Email address (from OAuth provider)</li>
+                            <li>Name (from OAuth provider)</li>
+                            <li>OAuth provider identifier (Google or GitHub)</li>
+                            <li>Account creation timestamp</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.2 Usage Information</h3>
+                        <p class="text-gray-700 mb-4">We collect information about your use of the Service:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Credit transactions and usage history</li>
+                            <li>Subscription status and plan information</li>
+                            <li>API usage logs and timestamps</li>
+                            <li>Error logs and debugging information</li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">2.3 Image Data</h3>
+                        <p class="text-gray-700 mb-4">
+                            Images you upload are processed through our Service but are not permanently stored on our servers. Images are:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Transmitted to third-party AI processing services</li>
+                            <li>Deleted from our servers after processing</li>
+                            <li>Not used for training or other purposes</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">3. How We Use Your Information</h2>
+                        <p class="text-gray-700 mb-4">We use collected information to:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Provide and maintain the Service</li>
+                            <li>Process your image extension requests</li>
+                            <li>Manage your subscription and credits</li>
+                            <li>Send service-related notifications</li>
+                            <li>Respond to your inquiries and support requests</li>
+                            <li>Improve and optimize the Service</li>
+                            <li>Detect and prevent fraud or abuse</li>
+                            <li>Comply with legal obligations</li>
+                        </ul>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">4. Data Storage and Security</h2>
+                        <p class="text-gray-700 mb-4">
+                            We use Vercel KV (Redis) to store your account data securely. We implement appropriate technical and organizational measures to protect your personal information, including:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li>Encryption of data in transit (HTTPS)</li>
+                            <li>Secure authentication via OAuth</li>
+                            <li>Access controls and authentication</li>
+                            <li>Regular security assessments</li>
+                        </ul>
+                        <p class="text-gray-700 mb-4 mt-4">
+                            However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">5. Third-Party Services</h2>
+                        <p class="text-gray-700 mb-4">We use the following third-party services:</p>
+                        
+                        <h3 class="text-xl font-semibold mb-3 mt-6">5.1 OAuth Providers</h3>
+                        <p class="text-gray-700 mb-4">
+                            We use Google and GitHub OAuth for authentication. These providers handle your login credentials and share limited profile information with us. Please review their privacy policies:
+                        </p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li><a href="https://policies.google.com/privacy" class="text-blue-600 hover:underline" target="_blank">Google Privacy Policy</a></li>
+                            <li><a href="https://docs.github.com/en/site-policy/privacy-policies/github-privacy-statement" class="text-blue-600 hover:underline" target="_blank">GitHub Privacy Statement</a></li>
+                        </ul>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">5.2 AI Processing Services</h3>
+                        <p class="text-gray-700 mb-4">
+                            Images are processed through Replicate's AI services. Images are transmitted securely and processed according to Replicate's privacy practices. Please review <a href="https://replicate.com/privacy" class="text-blue-600 hover:underline" target="_blank">Replicate's Privacy Policy</a>.
+                        </p>
+
+                        <h3 class="text-xl font-semibold mb-3 mt-6">5.3 Payment Processing</h3>
+                        <p class="text-gray-700 mb-4">
+                            Payments are processed through Paddle, a payment service provider. We do not store your payment card information. Please review <a href="https://paddle.com/legal/privacy" class="text-blue-600 hover:underline" target="_blank">Paddle's Privacy Policy</a>.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">6. Data Retention</h2>
+                        <p class="text-gray-700 mb-4">
+                            We retain your account information for as long as your account is active or as needed to provide the Service. We may retain certain information after account closure as required by law or for legitimate business purposes.
+                        </p>
+                        <p class="text-gray-700 mb-4">
+                            Images are not stored permanently and are deleted immediately after processing.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">7. Your Rights</h2>
+                        <p class="text-gray-700 mb-4">Depending on your location, you may have the following rights:</p>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700 ml-4">
+                            <li><strong>Access:</strong> Request access to your personal data</li>
+                            <li><strong>Correction:</strong> Request correction of inaccurate data</li>
+                            <li><strong>Deletion:</strong> Request deletion of your personal data</li>
+                            <li><strong>Portability:</strong> Request transfer of your data</li>
+                            <li><strong>Objection:</strong> Object to processing of your data</li>
+                            <li><strong>Withdrawal:</strong> Withdraw consent where processing is based on consent</li>
+                        </ul>
+                        <p class="text-gray-700 mb-4 mt-4">
+                            To exercise these rights, please contact us through your account dashboard or via the contact information provided on our website.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">8. Cookies and Tracking</h2>
+                        <p class="text-gray-700 mb-4">
+                            We use session cookies to maintain your login session. These cookies are essential for the Service to function and are not used for tracking or advertising purposes.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">9. Children's Privacy</h2>
+                        <p class="text-gray-700 mb-4">
+                            Our Service is not intended for users under the age of 18. We do not knowingly collect personal information from children. If you believe we have collected information from a child, please contact us immediately.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">10. International Data Transfers</h2>
+                        <p class="text-gray-700 mb-4">
+                            Your information may be transferred to and processed in countries other than your country of residence. These countries may have data protection laws that differ from those in your country. By using the Service, you consent to such transfers.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">11. Changes to This Privacy Policy</h2>
+                        <p class="text-gray-700 mb-4">
+                            We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically.
+                        </p>
+                    </section>
+
+                    <section>
+                        <h2 class="text-2xl font-semibold mb-4">12. Contact Us</h2>
+                        <p class="text-gray-700 mb-4">
+                            If you have any questions about this Privacy Policy, please contact us through your account dashboard or via the contact information provided on our website.
+                        </p>
+                    </section>
+                </div>
+
+                <div class="mt-12 pt-8 border-t">
+                    <a href="/" class="text-blue-600 hover:underline">← Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('last-updated').textContent = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    </script>
+</body>
+</html>
+

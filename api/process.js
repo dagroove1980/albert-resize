@@ -31,8 +31,8 @@ export default async function handler(req, res) {
   }
 
   // 2. Check if user has sufficient credits
-  // Only check if payments are enabled
-  const paymentsEnabled = process.env.ENABLE_PAYMENTS === 'true';
+  // Only check if payments are enabled (default to true)
+  const paymentsEnabled = process.env.ENABLE_PAYMENTS !== 'false';
 
   if (paymentsEnabled) {
     const hasEnoughCredits = await hasCredits(user.userId, 1);
